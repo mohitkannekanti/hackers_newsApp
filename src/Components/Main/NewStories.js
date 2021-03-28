@@ -1,10 +1,14 @@
-import React from 'react'
+import React from 'react';
+import CommonLink from '../CommonComponent/CommonLink';
+import * as api from '../../Api/all.api'
 
 const NewStories = () => {
+    console.log("new stories")
     return (
-        <div>
-            New Stories
-        </div>
+        <>
+            <CommonLink api={api.newLists()} />
+
+        </>
     )
 }
 

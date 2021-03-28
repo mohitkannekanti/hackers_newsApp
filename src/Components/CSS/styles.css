@@ -1,3 +1,27 @@
+.logo-image{
+  width: 18px;
+  height: 18px;
+  border: 1px solid #fff;
+
+}
+.page-top {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 10pt;
+  color: #222222;
+  line-height: 12px;
+}
+.nav-style{
+  line-height: 12pt;
+  height: 10px;
+}
+.header-link-name {
+  margin-right: 5px;
+}
+
+.page-top a:link {
+  color: #000000;
+  text-decoration: none;
+}
 .votearrow {
     width: 10px;
     height: 10px;

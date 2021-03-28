@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
-import Item from '../CommonComponent/Item'
+import Item from '../CommonComponent/Item';
+import QueryString from 'query-string';
 
-const ListTable = () => {
+const ListTable = ({ data }) => {
+    console.log("list table", data)
     const [offset, setOffset] = useState(0);
     const [perPage] = useState(30);
     const [dataPerPage, setDataPerPage] = useState([]);
@@ -14,13 +16,51 @@ const ListTable = () => {
     const location = useLocation();
     const pathName = location.pathname;
     const history = useHistory();
+    const queryParams = location.search ? QueryString.parse(location.search) : null;
+
+    useEffect(() => {
+        if (queryParams && queryParams.p) {
+            if (data.length > perPage * (+queryParams.p - 1)) {
+                let newOffset = perPage * (+queryParams.p - 1);
+                setOffset(newOffset);
+                setNextPage(+queryParams.p + 1);
+                setDataPerPage(data.slice(newOffset, newOffset + perPage));
+                moreButton(+queryParams.p);
+            }
+            else {
+                history.push(pathName);
+                setDataPerPage(data.slice(offset, offset + perPage));
+                if (data.length > perPage) {
+                    setMore(true);
+                }
+            }
+        }
+        else {
+            setDataPerPage(data.slice(offset, offset + perPage));
+            if (data.length > perPage) {
+                setMore(true);
+            }
+        }
+    }, [pageCount])
+
+    const moreButton = (pageNum) => {
+        if (data.length <= pageNum * perPage) {
+            setMore(false);
+        }
+        else {
+            setMore(true);
+        }
+    }
+
     const paginate = () => {
         setOffset(pageCount * perPage);
         setNextPage(nextPage + 1);
         setPageCount(pageCount + 1);
     }
+    console.log(dataPerPage, "data per")
+
     return (
-        <>
+        <React.Fragment>
             <table border="0" cellPadding="0" cellSpacing="0" className="itemlist">
                 <tbody>
                     {dataPerPage.map((data, index) => {
@@ -35,8 +75,7 @@ const ListTable = () => {
                     </tr>
                 </tbody>
             </table>
-
-        </>
+        </React.Fragment>
     )
 }
 

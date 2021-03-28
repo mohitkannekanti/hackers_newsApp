@@ -8,9 +8,9 @@ const Item = ({ id, number }) => {
     const [result, setResult] = useState([]);
     useEffect(() => {
         async function getData() {
-            // let data = await api.itemData(id);
-            // console.log(data);
-            // setResult(data);
+            let data = await api.itemData(id);
+            console.log(data);
+            setResult(data);
         }
         getData();
     }, [id]);

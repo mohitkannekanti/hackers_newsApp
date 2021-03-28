@@ -1,31 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import api from '../../Api/all.api'
+import React from 'react';
+import * as api from '../../Api/all.api'
 import CommonLink from '../CommonComponent/CommonLink';
 
-const Main = () => {
-
-    const [mainContent, setMainContent] = useState();
-
-    useEffect(() => {
-        getTopStories()
-    }, [])
-
-    const getTopStories = () => {
-        api.topLists().then(res => {
-            console.log(res, "res")
-
-        })
-            .catch((err) => {
-                console.log(err, "err")
-            })
-    }
-
+const TopStories = () => {
+    console.log("topstories")
 
     return (
-        <React.Fragment>
-            <CommonLink />
+        <>
+            <CommonLink api={api.topLists()} />
 
-        </React.Fragment>
+        </>
     )
 }
-export default Main
+export default TopStories

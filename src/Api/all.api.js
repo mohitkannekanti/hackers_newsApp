@@ -44,8 +44,8 @@ var showStories = (data) => {
     })
 
 }
-var topLists = (data) => {
-    let url = "topstories.json"
+var askStories = (data) => {
+    let url = "askstories.json"
     return api.get(url, data, {}).then(data => {
         var response = data.data
         return response;
@@ -54,4 +54,14 @@ var topLists = (data) => {
     })
 
 }
-export default { topLists, newLists, showStories, itemData }
+var jobStories = (data) => {
+    let url = "jobstories.json"
+    return api.get(url, data, {}).then(data => {
+        var response = data.data
+        return response;
+    }).catch(err => {
+        return Promise.reject(err);
+    })
+
+}
+export { topLists, newLists, showStories, itemData, askStories, jobStories }
