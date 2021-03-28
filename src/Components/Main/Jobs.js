@@ -1,6 +1,6 @@
 import React from 'react';
 import CommonLink from '../CommonComponent/CommonLink';
-import * as api from '../../Api/all.api'
+import { api } from '../../Api/all.api'
 
 
 const Jobs = () => {

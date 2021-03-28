@@ -8,8 +8,9 @@ import NewStories from './Components/Main/NewStories'
 import Ask from './Components/Main/Ask';
 import Jobs from './Components/Main/Jobs';
 
+
+const navLinks = ['new', 'ask', 'show', 'jobs'];
 function App() {
-  const navLinks = ['new', 'ask', 'show', 'jobs'];
   return (
     <div className="App">
       <BrowserRouter>

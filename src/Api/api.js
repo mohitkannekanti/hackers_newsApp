@@ -13,17 +13,17 @@ var get = (url, params = {}, headers = {}, extra = {}) => {
     })
 }
 
-var post = (url, data = {}, headers = {}, extra = {}) => {
-    // debugger
-    let URL = baseurl['url'] + url
-    return axios({
-        headers: headers,
-        method: 'post',
-        data: data,
-        url: URL
-    })
+// var post = (url, data = {}, headers = {}, extra = {}) => {
+//     // debugger
+//     let URL = baseurl['url'] + url
+//     return axios({
+//         headers: headers,
+//         method: 'post',
+//         data: data,
+//         url: URL
+//     })
 
-}
+// }
 
 
-export { get, post };
+export { get };

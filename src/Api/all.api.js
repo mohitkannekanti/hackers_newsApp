@@ -1,67 +1,78 @@
-import * as api from './api';
-// import baseurl from '../ConnectionPath/baseurl'
+import axios from 'axios';
 
-// axios.defaults.baseURL = 'https://hacker-news.firebaseio.com/v0/';
+axios.defaults.baseURL = 'https://hacker-news.firebaseio.com/v0/';
 
-var topLists = (data) => {
-    let url = "topstories.json"
-    return api.get(url, data, {}).then(data => {
-        var response = data.data
-        return response;
-    }).catch(err => {
-        return Promise.reject(err);
-    })
-
-}
-
-var newLists = (data) => {
-    let url = "topstories.json"
-    return api.get(url, data, {}).then(data => {
-        var response = data.data
-        return response;
-    }).catch(err => {
-        return Promise.reject(err);
-    })
-
-}
-var itemData = (data, id) => {
-    let url = `/item/${id}/.json`;
-    return api.get(url, data, {}).then(data => {
-        var response = data.data
-        return response;
-    }).catch(err => {
-        return Promise.reject(err);
-    })
-
-}
-var showStories = (data) => {
-    let url = "showstories.json"
-    return api.get(url, data, {}).then(data => {
-        var response = data.data
-        return response;
-    }).catch(err => {
-        return Promise.reject(err);
-    })
-
-}
-var askStories = (data) => {
-    let url = "askstories.json"
-    return api.get(url, data, {}).then(data => {
-        var response = data.data
-        return response;
-    }).catch(err => {
-        return Promise.reject(err);
-    })
-
-}
-var jobStories = (data) => {
-    let url = "jobstories.json"
-    return api.get(url, data, {}).then(data => {
-        var response = data.data
-        return response;
-    }).catch(err => {
-        return Promise.reject(err);
-    })
-
-}
-export { topLists, newLists, showStories, itemData, askStories, jobStories }
+export const api = {
+    topLists: () => {
+        return new Promise((resolve, reject) => {
+            axios.get('/topstories.json')
+                .then(
+                    res => {
+                        resolve(res.data)
+                    },
+                    error => {
+                        reject(error)
+                    })
+        })
+    },
+    newStories: () => {
+        return new Promise((resolve, reject) => {
+            axios.get('/newstories.json')
+                .then(
+                    res => {
+                        resolve(res.data)
+                    },
+                    error => {
+                        reject(error)
+                    })
+        })
+    },
+    askStories: () => {
+        return new Promise((resolve, reject) => {
+            axios.get('/askstories.json')
+                .then(
+                    res => {
+                        resolve(res.data)
+                    },
+                    error => {
+                        reject(error)
+                    })
+        })
+    },
+    jobs: () => {
+        return new Promise((resolve, reject) => {
+            axios.get('/jobstories.json')
+                .then(
+                    res => {
+                        resolve(res.data)
+                    },
+                    error => {
+                        reject(error)
+                    })
+        })
+    },
+    showStories: () => {
+        return new Promise((resolve, reject) => {
+            axios.get('/showstories.json')
+                .then(
+                    res => {
+                        resolve(res.data)
+                    },
+                    error => {
+                        reject(error)
+                    })
+        })
+    },
+    itemData: (id) => {
+        return new Promise((resolve, reject) => {
+            axios.get(`/item/${id}/.json`)
+                .then(
+                    res => {
+                        resolve(res.data)
+                    },
+                    error => {
+                        reject(error)
+                    })
+        })
+    }
+};

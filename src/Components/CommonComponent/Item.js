@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import * as api from '../../Api/all.api'
-import moment from 'moment';
+import { api } from '../../Api/all.api'
 import '../CSS/styles.css'
+import moment from 'moment';
 
 const Item = ({ id, number }) => {
     console.log("ITEM");
     const [result, setResult] = useState([]);
     useEffect(() => {
-        async function getData() {
-            let data = await api.itemData(id);
-            console.log(data);
-            setResult(data);
-        }
+        console.log("useEffect ");
+        const getData = async () => {
+            try {
+                const res = await api.itemData(id);
+                setResult(res)
+            } catch (e) {
+                console.log(e, "error")
+            }
+        };
         getData();
     }, [id]);
 
+    console.log(result, "result")
     return (
         <React.Fragment>
             {result && <>

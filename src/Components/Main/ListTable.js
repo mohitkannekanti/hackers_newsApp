@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
-import Item from '../CommonComponent/Item';
 import QueryString from 'query-string';
+import Item from '../CommonComponent/Item';
+
 
 const ListTable = ({ data }) => {
-    console.log("list table", data)
+
     const [offset, setOffset] = useState(0);
     const [perPage] = useState(30);
     const [dataPerPage, setDataPerPage] = useState([]);
@@ -19,6 +20,7 @@ const ListTable = ({ data }) => {
     const queryParams = location.search ? QueryString.parse(location.search) : null;
 
     useEffect(() => {
+        console.log(queryParams, "qppp")
         if (queryParams && queryParams.p) {
             if (data.length > perPage * (+queryParams.p - 1)) {
                 let newOffset = perPage * (+queryParams.p - 1);
@@ -57,7 +59,7 @@ const ListTable = ({ data }) => {
         setNextPage(nextPage + 1);
         setPageCount(pageCount + 1);
     }
-    console.log(dataPerPage, "data per")
+
 
     return (
         <React.Fragment>
@@ -76,7 +78,8 @@ const ListTable = ({ data }) => {
                 </tbody>
             </table>
         </React.Fragment>
-    )
-}
+    );
+};
 
-export default ListTable
+
+export default ListTable;
